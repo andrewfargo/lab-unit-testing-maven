@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
+import org.junit.platform.commons.annotation.Testable;
 
 /**
  * Tests of the sample methods.
@@ -113,6 +114,73 @@ public class TestSampleMethods {
         assertEquals(expected, SampleMethods.expt(n,k), 0.0001); 
       }
     }
+  }
+
+  /**
+   * Check that removeAs works as expected.
+   */
+  @Test
+  public void testRemoveAs() {
+    assertEquals("", 
+                 SampleMethods.removeAs(""),
+                 "empty string");
+    assertEquals("hello", 
+                 SampleMethods.removeAs("hello"),
+                 "no as");
+    assertEquals("", 
+                 SampleMethods.removeAs("a"),
+                 "eliminate one a");
+    assertEquals("", 
+                 SampleMethods.removeAs("aaaa"),
+                 "eliminate many as");
+    assertEquals("pin", 
+                 SampleMethods.removeAs("pain"),
+                 "eliminate one a, short string");
+    assertEquals("lphbet", 
+                 SampleMethods.removeAs("alphabet"),
+                 "eliminate many as, medium string");
+    assertEquals("BCDEFGHIJKLMNOPQ",
+                 SampleMethods.removeAs("aBaaCDaaaEFGaaaaHIJKaaaaLMNaaaOPaaQa"),
+                 "eliminate many as, silly string");
+    assertEquals("bbb",
+                 SampleMethods.removeAs("aaabbbaaa"),
+                 "eliminate prefix and suffix as");
+  } // testRemoveAs
+
+  /**
+   * Check that removeBs works as expected.
+   */
+  @Test
+  public void testRemoveBs() {
+    assertEquals("", 
+                 SampleMethods.removeBs(""),
+                 "empty string");
+    assertEquals("hello", 
+                 SampleMethods.removeBs("hello"),
+                 "no as");
+    assertEquals("", 
+                 SampleMethods.removeBs("b"),
+                 "eliminate one a");
+    assertEquals("", 
+                 SampleMethods.removeBs("bbbb"),
+                 "eliminate many as");
+    assertEquals("pin", 
+                 SampleMethods.removeBs("pbin"),
+                 "eliminate one a, short string");
+    assertEquals("lphet", 
+                 SampleMethods.removeBs("blphbbet"),
+                 "eliminate many as, medium string");
+    assertEquals("BCDEFGHIJKLMNOPQ",
+                 SampleMethods.removeBs("bBbbCDbEFGbHIJKbbLMNbbOPbQb"),
+                 "eliminate many as, silly string");
+    assertEquals("aaaaaa",
+                 SampleMethods.removeBs("aaabbbaaa"),
+                 "eliminate prefix and suffix as");
+  } // testRemoveAs
+
+  @Test
+  void givenTest(){
+    assertEquals(1024, SampleMethods.expt(2, 10), "1K");
   }
 
 } // class TestSampleMethods

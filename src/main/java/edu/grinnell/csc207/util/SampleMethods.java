@@ -86,8 +86,8 @@ public class SampleMethods {
     String noAs = ""; // The string we're creating with no a's.
 
     for (int i = 0; i < str.length(); i++) {
-      if (str.charAt(i) == 'a') {
-        noAs += str.charAt(i++);
+      if (str.charAt(i) != 'a') {
+        noAs += str.charAt(i);
       } // if we see the a
     } // for each position
 
@@ -108,9 +108,10 @@ public class SampleMethods {
    */
   public static String removeBs(String str) {
     StringBuffer noBs = new StringBuffer(str);
-    for (int i = 0; i < str.length(); i++) {
+    for (int i = 0; i < noBs.length(); i++) {
       if (noBs.charAt(i) == 'b') {
         noBs.deleteCharAt(i);
+        i--;
       } // if the char at position i is a 'b'
     } // for each position in the string
 
