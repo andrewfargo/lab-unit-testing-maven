@@ -1,5 +1,7 @@
 package edu.grinnell.csc207.util;
 
+
+import java.io.PrintWriter;
 /**
  * A variety of methods for which students should write tests.
  *
@@ -16,7 +18,7 @@ public class SampleMethods {
    * @return The temperature in Fahrenheit.
    */
   public static int c2f(int temp) {
-    return (temp - 32) * (5 / 9);
+    return (int)((temp * (9.0 / 5.0))) + 32;
   } // c2f(int)
 
   /**
@@ -40,7 +42,7 @@ public class SampleMethods {
       return tmp * tmp;
     } else {
       // Recursive case: When p is odd, result is x*(x^(p-1))
-      return expt(x * x, (p - 1) / 2);
+      return x * expt(x, (p - 1));
     } // if p is odd.
   } // expt(int,int)
 
@@ -64,7 +66,7 @@ public class SampleMethods {
       return tmp * tmp;
     } else {
       // Recursive case: When p is odd, result is x*(x^(p-1))
-      return expt(x * x, (p - 1) / 2);
+      return x * expt(x, (p - 1));
     } // if p is odd
   } // expt(double,int)
 
@@ -121,13 +123,14 @@ public class SampleMethods {
    * @param ints an array of integers
    * @return result, an integer
    * @pre ints[0] + ints[1] + ... + ints[ints.length-1] < maxint
+   * @pre running sum must never exceed the maxint or be less then the minint
    * @post result = ints[0] + ints[1] + ... + ints[ints.length-1]
    */
   public static int sum(int[] ints) {
     int result = 0;
 
     for (int i = 0; i < ints.length; i++) {
-      result += result + i;
+      result += ints[i];
     } // for
 
     return result; } // result(int[])
